@@ -36,8 +36,21 @@ app.get('/flights/:id',(req,res) =>{
   const flight = flights.find(c => c.id === parseInt(req.params.id));
   if (!flight) {
       return res.status(404).send('The destination with the given ID was not found.')
-  }res.send(flight);
+      }res.send(flight);
 });
+
+// Add or book a flight
+app.post('/flights',(req,res)=>{
+      const flight= {
+        id: flights.length+1,
+        title:req.body.title,
+        time: req.body.time,
+        price: 12000,
+        date: req.body.date
+      };
+      flights.push(flight);
+      res.send(flight);
+})
 
 
 
