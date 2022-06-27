@@ -32,20 +32,14 @@ app.get('/flights',(req,res) =>{
 })
 
 //to get a single flight
-// app.get('/flights/:id',(req,res) =>{
-//   const flight = flights.find(c => c.id === parseInt(req.params.id));
-//   if (!flight) {
-//       return res.status(404).send('The destination with the given ID was not found.')
-//   }res.send(flight);
-// });
-
-// another angu
-app.get('/flight/:title',(req,res)=>{
-  const flight=flights.find(f=>f.title === (req.body.title));
-  if(!flight){
-    return res.status(404).send('The title with the destination was not found.')
+app.get('/flights/:id',(req,res) =>{
+  const flight = flights.find(c => c.id === parseInt(req.params.id));
+  if (!flight) {
+      return res.status(404).send('The destination with the given ID was not found.')
   }res.send(flight);
-})
+});
+
+
 
 //listener handler
 app.listen(port,()=>console.log(`Listening to port on ${port}...`))
