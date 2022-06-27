@@ -52,6 +52,18 @@ app.post('/flights',(req,res)=>{
       res.send(flight);
 })
 
+//update and edit a flight
+app.put('/flights/:id',(req,res)=>{
+  // check if flight id exists
+  const flight = flights.find(c => c.id === parseInt(req.params.id));
+    if (!flight) {
+    return res.status(404).send('The destination with the given ID was not found.')
+    }else{
+      flights.title =req.body.title;
+    }
+
+})
+
 
 
 //listener handler
