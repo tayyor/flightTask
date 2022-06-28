@@ -52,18 +52,33 @@ app.post('/flights',(req,res)=>{
       res.send(flight);
 })
 
-//update and edit a flight
+//edit and update a flight
 app.put('/flights/:id',(req,res)=>{
   // check if flight id exists
   const flight = flights.find(c => c.id === parseInt(req.params.id));
     if (!flight) {
     return res.status(404).send('The destination with the given ID was not found.')
     }else{
-      flights.title =req.body.title;
-    }
-
+      flight.title =req.body.title;
+      flight.time = req.body.time;
+      flight.price =req.body.price;
+      flight.date = req.body.date;
+      res.send(flight);
+      }
 })
 
+//delete flight
+app.delete('/flights/:id',(req,res) =>{
+  // check if flight id exists
+  const flight = flights.find(c => c.id === parseInt(req.params.id));
+    if (!flight) {
+    return res.status(404).send('The destination with the given ID was not found.')
+    }else{
+      const index = flights.indexOf(flight);
+      flights.splice(index,1);
+      res.send(flight);
+      }
+})
 
 
 //listener handler
